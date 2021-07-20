@@ -2,6 +2,14 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: some client id # укажите свой client id
+            client-secret: some client secret # укажите свой client secret
 server:
   port: 80
 
