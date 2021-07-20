@@ -3,38 +3,38 @@ spring:
     serialization:
       INDENT_OUTPUT: true
 
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            client-id: some client id # укажите свой client id
-            client-secret: some client secret # укажите свой client secret
-          facebook:
-            client-id: some client id # укажите свой client id
-            client-secret: some client secret # укажите свой client secret
-          my-app:
-            provider: auth0 # имя провайдера который описан ниже
-            client-name: "Authenticate via Auth0"
-            client-id: oOkANCsoYdGuTutrRYmqoo7hiArxPori # укажите свой client id
-            client-secret: 4qWv5Abed_KvPg7rVYPBRrZocIlqyddECk7EQLgcbnXSI1pvQ9jmJO491JqzNi30 # укажите свой client secret
-            client-authentication-type: basic # тип аутентификации нашего приложения при запросе токенов
-            authorization_grant_type: authorization_code # тип гранта который мы хотим получить от авторизационного сервера
-            scope: openid,profile,email # набор пермишенов которые мы хотим получить
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}" # callback URL по умолчанию используется этот патерн
-                                                                        # но можно указать точный url
-
-        provider:
-          auth0:
-            authorization-uri: https://activx.auth0.com/authorize # ендпоинт куда посылается авторизационный запрос(укажите свой)
-            token-uri: https://activx.auth0.com/oauth/token # ендпоинт куда посылается запрос на получение токенов(укажите свой)
-
-#            user-info-uri: https://activx.auth0.com/userinfo # в случае с openid необязательный параметр,
-                                                              # и предназначен для псевдо аутентификации используя
-                                                              # ресурс сервер, как источник данных о пользователе
-                                                              # по сути дублирует информацию из ID token
-            user-name-attribute: nickname # имя атрибута в объекте userinfo или в claims который содержит username
-            jwk-set-uri: https://activx.auth0.com/.well-known/jwks.json # ендпоинт с набором публичных ключей для верификации токена
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            client-id: some client id # укажите свой client id
+#            client-secret: some client secret # укажите свой client secret
+#          facebook:
+#            client-id: some client id # укажите свой client id
+#            client-secret: some client secret # укажите свой client secret
+#          my-app:
+#            provider: auth0 # имя провайдера который описан ниже
+#            client-name: "Authenticate via Auth0"
+#            client-id: oOkANCsoYdGuTutrRYmqoo7hiArxPori # укажите свой client id
+#            client-secret: 4qWv5Abed_KvPg7rVYPBRrZocIlqyddECk7EQLgcbnXSI1pvQ9jmJO491JqzNi30 # укажите свой client secret
+#            client-authentication-type: basic # тип аутентификации нашего приложения при запросе токенов
+#            authorization_grant_type: authorization_code # тип гранта который мы хотим получить от авторизационного сервера
+#            scope: openid,profile,email # набор пермишенов которые мы хотим получить
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}" # callback URL по умолчанию используется этот патерн
+#                                                                        # но можно указать точный url
+#
+#        provider:
+#          auth0:
+#            authorization-uri: https://activx.auth0.com/authorize # ендпоинт куда посылается авторизационный запрос(укажите свой)
+#            token-uri: https://activx.auth0.com/oauth/token # ендпоинт куда посылается запрос на получение токенов(укажите свой)
+#
+##            user-info-uri: https://activx.auth0.com/userinfo # в случае с openid необязательный параметр,
+#                                                              # и предназначен для псевдо аутентификации используя
+#                                                              # ресурс сервер, как источник данных о пользователе
+#                                                              # по сути дублирует информацию из ID token
+#            user-name-attribute: nickname # имя атрибута в объекте userinfo или в claims который содержит username
+#            jwk-set-uri: https://activx.auth0.com/.well-known/jwks.json # ендпоинт с набором публичных ключей для верификации токена
 server:
   port: 80
 
