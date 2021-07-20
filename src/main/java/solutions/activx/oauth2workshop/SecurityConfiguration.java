@@ -17,28 +17,34 @@ import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // включаем аутентификацию для все запросов
         http.authorizeRequests(req -> req.anyRequest().authenticated())
+                // Включаем oauth2.0 с настройками по умолчанию
                 .oauth2Login(Customizer.withDefaults());
     }
 
+    /**
+     * Регистрируем репозиторий клиентов и определяем в нем
+     * регистрацию для identity provider'a Auth0
+     */
     @Bean
-    public ClientRegistrationRepository clientRegistrationRepository(){
+    public ClientRegistrationRepository clientRegistrationRepository() {
         return new InMemoryClientRegistrationRepository(
                 ClientRegistration.withRegistrationId("my-app")
-                .clientName("Authenticate via Auth0 (java config)")
-                .clientId("oOkANCsoYdGuTutrRYmqoo7hiArxPori")
-                .clientSecret("4qWv5Abed_KvPg7rVYPBRrZocIlqyddECk7EQLgcbnXSI1pvQ9jmJO491JqzNi30")
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                .scope("openid","profile","email")
+                        .clientName("Authenticate via Auth0 (java config)")
+                        .clientId("oOkANCsoYdGuTutrRYmqoo7hiArxPori")
+                        .clientSecret("4qWv5Abed_KvPg7rVYPBRrZocIlqyddECk7EQLgcbnXSI1pvQ9jmJO491JqzNi30")
+                        .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                        .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                        .scope("openid", "profile", "email")
                         .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
 
-                .authorizationUri("https://activx.auth0.com/authorize")
-                .tokenUri("https://activx.auth0.com/oauth/token")
-                .jwkSetUri("https://activx.auth0.com/.well-known/jwks.json")
+                        .authorizationUri("https://activx.auth0.com/authorize")
+                        .tokenUri("https://activx.auth0.com/oauth/token")
+                        .jwkSetUri("https://activx.auth0.com/.well-known/jwks.json")
 
-                .userNameAttributeName("nickname")
-                .build()
+                        .userNameAttributeName("nickname")
+                        .build()
         );
     }
 
