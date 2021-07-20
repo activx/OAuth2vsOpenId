@@ -28,7 +28,11 @@ spring:
           auth0:
             authorization-uri: https://activx.auth0.com/authorize # ендпоинт куда посылается авторизационный запрос(укажите свой)
             token-uri: https://activx.auth0.com/oauth/token # ендпоинт куда посылается запрос на получение токенов(укажите свой)
-#            user-info-uri: https://activx.auth0.com/userinfo
+
+#            user-info-uri: https://activx.auth0.com/userinfo # в случае с openid необязательный параметр,
+                                                              # и предназначен для псевдо аутентификации используя
+                                                              # ресурс сервер, как источник данных о пользователе
+                                                              # по сути дублирует информацию из ID token
             user-name-attribute: nickname # имя атрибута в объекте userinfo или в claims который содержит username
             jwk-set-uri: https://activx.auth0.com/.well-known/jwks.json # ендпоинт с набором публичных ключей для верификации токена
 server:
