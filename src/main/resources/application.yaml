@@ -10,6 +10,9 @@ spring:
           github:
             client-id: some client id # укажите свой client id
             client-secret: some client secret # укажите свой client secret
+          facebook:
+            client-id: some client id # укажите свой client id
+            client-secret: some client secret # укажите свой client secret
 server:
   port: 80
 
