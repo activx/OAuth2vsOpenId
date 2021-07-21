@@ -42,4 +42,19 @@ public class HomeController {
                 .getUri();
         return restTemplate.getForObject(uri, Map.class);
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return "<h1>Created</h1>";
+    }
+
+    @GetMapping("/delete")
+    public String delete() {
+        return "<h1>Deleted</h1>";
+    }
+
+    @GetMapping("/manage")
+    public String manage() {
+        return "<h1>Managed</h1>";
+    }
 }
